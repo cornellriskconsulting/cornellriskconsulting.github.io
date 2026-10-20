@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="A student club for risk consulting careers: forensics and financial crime, risk modeling, litigation economics, and strategy and analytics.">
+<style>[hidden]{display:none!important}img{max-width:100%}body{margin:0}</style>
+<title>Risk Consulting Club</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..600&display=swap">
+<style>
+/* Layout: ledger-ruled hero carrying the pitch, then four exhibits, why it matters, formats, FAQ and a join band. */
+:root {
+  --paper: #F3F5F8;
+  --surface: #FFFFFF;
+  --tint: #E9EDF4;
+  --ink: #131B2E;
+  --muted: #4A5470;
+  --rule: #D3D9E4;
+  --hl: #F5D451;
+  --hl-band: #F8E08A;
+  --hl-ink: #131B2E;
+  --flag: #A8401A;
+  --flag-soft: #F8E3D9;
+  --ok: #24684A;
+  --ok-soft: #DCEFE4;
+  --shadow: rgba(19, 27, 46, 0.16);
+
+  --font-display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --step--1: 0.8125rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.3rem;
+  --step-2: clamp(1.8rem, 3.2vw, 2.6rem);
+  --step-3: clamp(2.6rem, 6.6vw, 5.4rem);
+  --radius: 6px;
+  --gutter: max(clamp(16px, 4vw, 40px), env(safe-area-inset-left, 0px));
+  --gutter-r: max(clamp(16px, 4vw, 40px), env(safe-area-inset-right, 0px));
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0C1220; --surface: #131B2D; --tint: #1A2439; --ink: #E7EBF3; --muted: #A4AEC4; --rule: #2A3550;
+    --hl: #E8C547; --hl-band: #5C4D16; --hl-ink: #131B2E; --flag: #F08A5D; --flag-soft: #3A2119;
+    --ok: #6FCF9F; --ok-soft: #15301F; --shadow: rgba(0, 0, 0, 0.55); color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0C1220; --surface: #131B2D; --tint: #1A2439; --ink: #E7EBF3; --muted: #A4AEC4; --rule: #2A3550;
+  --hl: #E8C547; --hl-band: #5C4D16; --hl-ink: #131B2E; --flag: #F08A5D; --flag-soft: #3A2119;
+  --ok: #6FCF9F; --ok-soft: #15301F; --shadow: rgba(0, 0, 0, 0.55); color-scheme: dark;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+* { box-sizing: border-box; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 500; line-height: 1.1; margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 3px; }
+
+.wrap { max-width: 1160px; margin-inline: auto; padding-left: var(--gutter); padding-right: var(--gutter-r); }
+.eyebrow { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.sec { padding-block: clamp(64px, 9vw, 112px); border-top: 1px solid var(--rule); }
+.sec-head { display: grid; gap: 0.85rem; max-width: 40rem; margin-bottom: clamp(32px, 5vw, 56px); }
+.sec-head h2 { font-size: var(--step-2); }
+.sec-lede { color: var(--muted); max-width: 36rem; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5em;
+  font: 600 0.95rem/1 var(--font-body); padding: 0.9em 1.3em; border-radius: var(--radius);
+  border: 1.5px solid var(--rule); color: var(--ink); background: transparent; text-decoration: none;
+  cursor: pointer; transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+.btn:hover { border-color: var(--ink); }
+.btn-primary { background: var(--hl); color: var(--hl-ink); border-color: var(--hl); }
+.btn-primary:hover { border-color: var(--hl); transform: translate(-2px, -2px); box-shadow: 3px 3px 0 var(--ink); }
+.btn-small { padding: 0.65em 1em; font-size: 0.88rem; }
+.btn-large { padding: 1.05em 1.6em; font-size: 1.02rem; }
+
+/* Header */
+.site-head { border-bottom: 1px solid var(--rule); }
+.head-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1rem; }
+.brand { display: inline-flex; align-items: center; gap: 0.6rem; text-decoration: none; font-family: var(--font-display); font-weight: 600; font-size: 1.2rem; letter-spacing: -0.01em; }
+.brand svg { flex: none; }
+.lens-fill { fill: var(--hl); }
+.lens-line { stroke: var(--ink); fill: none; }
+.site-nav { display: flex; align-items: center; gap: 1.6rem; }
+.site-nav a:not(.btn) { color: var(--muted); text-decoration: none; font-size: 0.93rem; }
+.site-nav a:not(.btn):hover { color: var(--ink); }
+@media (max-width: 720px) { .site-nav a:not(.btn) { display: none; } }
+
+/* Hero */
+.hero { position: relative; padding-block: clamp(48px, 7vw, 96px) clamp(64px, 8vw, 104px); overflow: hidden; }
+.hero::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: repeating-linear-gradient(to bottom, transparent 0 35px, var(--rule) 35px 36px);
+  opacity: 0.55;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 85%);
+  mask-image: linear-gradient(to bottom, #000 0%, transparent 85%);
+}
+.hero-grid { position: relative; display: grid; }
+.hero-copy { display: grid; gap: 1.5rem; min-width: 0; max-width: 50rem; }
+.hero h1 { font-size: var(--step-3); line-height: 1.02; letter-spacing: -0.02em; }
+.mark {
+  background-image: linear-gradient(transparent 56%, var(--hl-band) 56%, var(--hl-band) 94%, transparent 94%);
+  background-repeat: no-repeat; background-size: 100% 100%;
+  -webkit-box-decoration-break: clone; box-decoration-break: clone;
+  animation: swipe 0.9s 0.3s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+@keyframes swipe { from { background-size: 0% 100%; } to { background-size: 100% 100%; } }
+.lede { font-size: 1.15rem; color: var(--muted); max-width: 34rem; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+
+/* Exhibits */
+.exhibits { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(32px, 5vw, 56px) clamp(28px, 5vw, 72px); }
+@media (max-width: 600px) { .exhibits { grid-template-columns: minmax(0, 1fr); } }
+.exhibit { display: grid; gap: 0.6rem; align-content: start; border-top: 2px solid var(--ink); padding-top: 1rem; min-width: 0; }
+.exhibit h3 { font-size: 1.5rem; }
+.exhibit p { color: var(--muted); max-width: 34rem; }
+.fits { font-family: var(--font-mono); font-size: 0.75rem; }
+
+/* Why */
+.why-grid { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(32px, 5vw, 80px); }
+@media (max-width: 820px) { .why-grid { grid-template-columns: minmax(0, 1fr); } }
+.why-grid h2 { font-size: var(--step-2); margin-top: 0.85rem; }
+.why-list { display: grid; }
+.why-item { display: grid; gap: 0.4rem; padding-block: 1.3rem; border-bottom: 1px solid var(--rule); }
+.why-item:first-child { padding-top: 0; }
+.why-item h3 { font-size: var(--step-1); }
+.why-item p { color: var(--muted); max-width: 36rem; }
+.firms { margin-top: clamp(40px, 6vw, 72px); padding-block: 1.6rem; border-block: 1px solid var(--rule); display: grid; gap: 0.7rem; }
+.firms > * { min-width: 0; }
+.firm-names { font-family: var(--font-display); font-style: italic; font-size: clamp(1.15rem, 2vw, 1.45rem); line-height: 1.5; }
+.firm-names span { white-space: nowrap; }
+.firm-names .sep { color: var(--muted); font-style: normal; margin-inline: 0.15rem; }
+.fine { font-family: var(--font-mono); font-size: 0.74rem; color: var(--muted); }
+
+/* Formats */
+.formats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(24px, 3vw, 36px); }
+@media (max-width: 920px) { .formats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .formats { grid-template-columns: minmax(0, 1fr); } }
+.format { display: grid; gap: 0.5rem; align-content: start; min-width: 0; }
+.format h3 { font-size: var(--step-1); }
+.format p { color: var(--muted); font-size: 0.98rem; }
+.format-ico { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--tint); }
+.format-ico svg { width: 20px; height: 20px; stroke: var(--ink); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
+/* FAQ */
+.faq { max-width: 50rem; border-top: 2px solid var(--ink); }
+.faq details { border-bottom: 1px solid var(--rule); }
+.faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-block: 1.1rem; font-family: var(--font-display); font-size: 1.25rem; font-weight: 500; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font-family: var(--font-mono); font-size: 1.1rem; color: var(--muted); transition: transform 0.2s ease; }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq details p { color: var(--muted); padding-bottom: 1.2rem; max-width: 42rem; }
+
+/* Join band */
+.join { background: var(--ink); color: var(--paper); }
+.join-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: clamp(28px, 5vw, 64px); align-items: center; padding-block: clamp(64px, 9vw, 112px); }
+@media (max-width: 820px) { .join-grid { grid-template-columns: minmax(0, 1fr); } }
+.join h2 { font-size: clamp(2.1rem, 4.4vw, 3.4rem); }
+.join-copy { display: grid; gap: 1rem; }
+.join-copy p { color: var(--rule); max-width: 32rem; font-size: 1.08rem; }
+.join :focus-visible { outline-color: var(--paper); }
+.join .btn-primary:hover { box-shadow: 3px 3px 0 var(--paper); }
+.join-actions { display: grid; gap: 1.1rem; justify-items: start; }
+.unset { font-family: var(--font-mono); font-size: 0.82rem; border: 1px dashed var(--rule); color: var(--rule); padding: 0.8rem 1rem; border-radius: var(--radius); }
+.contact { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.75rem; font-size: 0.95rem; color: var(--rule); }
+.email { font-family: var(--font-mono); color: var(--paper); user-select: all; overflow-wrap: anywhere; }
+.btn-copy { font: 500 0.78rem/1 var(--font-mono); padding: 0.45em 0.7em; border-radius: 4px; border: 1px solid var(--rule); background: transparent; color: var(--paper); cursor: pointer; }
+.btn-copy:hover { border-color: var(--paper); }
+
+/* Footer */
+.foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.6rem 2rem; padding-block: 1.6rem 2.2rem; font-family: var(--font-mono); font-size: 0.74rem; color: var(--muted); }
+.foot p { max-width: 44rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .mark { animation: none; }
+  .btn, .faq summary::after { transition: none; }
+  .btn-primary:hover { transform: none; }
+}
+</style>
+
+</head>
+<body>
+<header class="site-head">
+  <div class="wrap head-row">
+    <a class="brand" href="#top">
+      <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">
+        <circle class="lens-fill" cx="11.5" cy="11.5" r="7.5"></circle>
+        <circle class="lens-line" cx="11.5" cy="11.5" r="7.5" stroke-width="2"></circle>
+        <path class="lens-line" d="M7.5 11.5h8M7.5 14.5h5" stroke-width="1.4" stroke-linecap="round"></path>
+        <path class="lens-line" d="M17 17l7.5 7.5" stroke-width="2.6" stroke-linecap="round"></path>
+      </svg>
+      <span>Risk Consulting Club</span>
+    </a>
+    <nav class="site-nav" aria-label="Sections">
+      <a href="#practices">What we cover</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn btn-primary btn-small" data-join href="#join">Join</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Founding semester · Spring 2027</p>
+        <h1>Consulting careers most students <span class="mark">don't know exist.</span></h1>
+        <p class="lede">Every major consulting firm runs a risk practice. Its teams investigate fraud, test the models banks rely on, value the damages in lawsuits and advise clients on what to do next. We're a new student club that helps you find these roles, learn the work and prepare for the interviews.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" data-join href="#join">Join the interest list</a>
+          <a class="btn" href="#practices">See what we cover</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="sec" id="practices">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">What we cover</p>
+        <h2>Four kinds of risk work</h2>
+        <p class="sec-lede">Our workshops, speakers and interview prep rotate through these four areas.</p>
+      </div>
+      <div class="exhibits">
+        <article class="exhibit">
+          <h3>Forensics &amp; Financial Crime</h3>
+          <p>When a company's numbers don't add up, forensic teams find out why. Trace fraud and money laundering through millions of transactions, find the controls that failed, and build the evidence, in cases as large as Wirecard's &euro;1.9 billion in cash that never existed.</p>
+          <p class="fits">Fits CS, AEM, Economics, Government</p>
+        </article>
+        <article class="exhibit">
+          <h3>Risk Modeling</h3>
+          <p>A spreadsheet error in a JPMorgan risk model understated the risk behind a $6 billion trading loss. Build and test the models banks use to lend and trade, along with the checks meant to catch errors like that one.</p>
+          <p class="fits">Fits CS, ORIE, Statistics, Economics</p>
+        </article>
+        <article class="exhibit">
+          <h3>Litigation Economics</h3>
+          <p>When one company sues another, economists put a dollar figure on the damage. Build the models behind that number from large datasets of sales and prices, in cases as large as Oracle's $8.8 billion claim against Google.</p>
+          <p class="fits">Fits Economics, AEM, CS</p>
+        </article>
+        <article class="exhibit">
+          <h3>Strategy &amp; Analytics</h3>
+          <p>Help a client decide what to do about a risk: whether to enter a market, how to rebuild after a fraud, which processes and controls to redesign. Then back the recommendation with the analysis.</p>
+          <p class="fits">Fits Economics, AEM, Government, CS</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="why-grid">
+        <div>
+          <p class="eyebrow">Why it's worth a look</p>
+          <h2>A different way into consulting</h2>
+        </div>
+        <div class="why-list">
+          <div class="why-item">
+            <h3>Every major firm has a risk practice</h3>
+            <p>Risk work sits inside each of the Big 4 and is central to firms like Kroll, FTI and Ankura. The skills you build carry from one firm to the next.</p>
+          </div>
+          <div class="why-item">
+            <h3>Your major already fits</h3>
+            <p>Analysts come from Computer Science, Economics, AEM, Government and Engineering. What matters is working carefully with data and explaining what you found.</p>
+          </div>
+          <div class="why-item">
+            <h3>A less crowded path</h3>
+            <p>Most consulting-minded students only apply to strategy roles. Risk practices recruit on their own tracks, and many strong candidates never hear about them.</p>
+          </div>
+        </div>
+      </div>
+      <div class="firms">
+        <p class="eyebrow">Firms with risk practices include</p>
+        <p class="firm-names"><span>Deloitte</span> <span class="sep">·</span> <span>PwC</span> <span class="sep">·</span> <span>EY</span> <span class="sep">·</span> <span>KPMG</span> <span class="sep">·</span> <span>Protiviti</span> <span class="sep">·</span> <span>Guidehouse</span> <span class="sep">·</span> <span>Ankura</span> <span class="sep">·</span> <span>FTI Consulting</span> <span class="sep">·</span> <span>Kroll</span> <span class="sep">·</span> <span>Alvarez &amp; Marsal</span></p>
+        <p class="fine">Named for information only. No firm sponsors or endorses this club.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">What we do</p>
+        <h2>Four ways to get ready</h2>
+      </div>
+      <div class="formats">
+        <div class="format">
+          <span class="format-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"></path><path d="M8 9h8M8 12h5"></path></svg></span>
+          <h3>Interview prep</h3>
+          <p>Case, behavioral and technical practice built for risk roles, including investigation-style cases.</p>
+        </div>
+        <div class="format">
+          <span class="format-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"></rect><path d="M4 9h16M9 9v11"></path></svg></span>
+          <h3>Workshops</h3>
+          <p>Hands-on sessions on real skills: tracing a fraud, reviewing suspicious transactions, testing a model.</p>
+        </div>
+        <div class="format">
+          <span class="format-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20c1.2-3.6 3.8-5.5 7-5.5s5.8 1.9 7 5.5"></path></svg></span>
+          <h3>Speakers &amp; alumni</h3>
+          <p>Practitioners and recent graduates explain what the work is like and how they got hired.</p>
+        </div>
+        <div class="format">
+          <span class="format-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 4h8v4a4 4 0 0 1-8 0z"></path><path d="M8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4M12 12v4M8 20h8M10 16h4"></path></svg></span>
+          <h3>Case competition</h3>
+          <p>Teams work a realistic case and present their findings to judges from the field.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="faq">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">FAQ</p>
+        <h2>Questions people ask</h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>Do I need experience in consulting?</summary>
+          <p>No. We start from the basics, and most members will be new to this work.</p>
+        </details>
+        <details>
+          <summary>I'm interested in strategy consulting. Should I still come?</summary>
+          <p>Yes. Risk interviews use the same case and teamwork skills, so you can prepare for both at once.</p>
+        </details>
+        <details>
+          <summary>How much time does it take?</summary>
+          <p>Come to whatever interests you. Most events run about an hour.</p>
+        </details>
+        <details>
+          <summary>Is this an official Cornell organization?</summary>
+          <p>Not yet. We're student-run, in our founding semester, and plan to register with Cornell's Campus Activities office.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="join" id="join">
+    <div class="wrap join-grid">
+      <div class="join-copy">
+        <h2>Join the interest list</h2>
+      </div>
+      <div class="join-actions">
+        <a class="btn btn-primary btn-large" id="join-btn" data-join href="#join">Open the interest form</a>
+        <p class="unset" id="form-unset" hidden>Interest form link not added yet.</p>
+        <p class="contact" id="contact" hidden><span>Questions?</span><span class="email" id="email-text">Club email coming soon</span><button class="btn-copy" id="copy-email" type="button" hidden>Copy</button></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap foot">
+  <p>Risk Consulting Club · Student-run · Spring 2027</p>
+  <p>An independent student group in its founding semester. Not yet a registered Cornell University organization, and not sponsored by any firm named here.</p>
+</footer>
+
+<script>
+  // Fill these in, then republish or redeploy.
+  const SITE = {
+    formUrl: "https://forms.gle/RreDv3zukBTCRpf1A",  // the Google Form link
+    email: ""     // the club's shared email address
+  };
+
+  (function setupLinks() {
+    const joinLinks = document.querySelectorAll("[data-join]");
+    const joinBtn = document.getElementById("join-btn");
+    const unset = document.getElementById("form-unset");
+    if (SITE.formUrl) {
+      joinLinks.forEach((a) => { a.href = SITE.formUrl; a.target = "_blank"; a.rel = "noopener"; });
+    } else {
+      joinLinks.forEach((a) => { a.href = "#join"; });
+      joinBtn.hidden = true;
+      unset.hidden = false;
+    }
+    const emailText = document.getElementById("email-text");
+    const copyBtn = document.getElementById("copy-email");
+    if (SITE.email) {
+      emailText.textContent = SITE.email;
+      document.getElementById("contact").hidden = false;
+      copyBtn.hidden = false;
+      copyBtn.addEventListener("click", () => {
+        const done = () => { copyBtn.textContent = "Copied"; setTimeout(() => { copyBtn.textContent = "Copy"; }, 1600); };
+        const fallback = () => {
+          const range = document.createRange();
+          range.selectNodeContents(emailText);
+          const sel = window.getSelection();
+          sel.removeAllRanges();
+          sel.addRange(range);
+          copyBtn.textContent = "Selected";
+        };
+        try {
+          navigator.clipboard.writeText(SITE.email).then(done, fallback);
+        } catch (e) { fallback(); }
+      });
+    }
+  })();
+
+</script>
+
+</body>
+</html>
